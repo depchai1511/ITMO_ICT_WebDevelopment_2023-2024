@@ -1,0 +1,13 @@
+{% extends 'pages/base.html' %} {% block content %}
+<h1>Cars:</h1>
+<ul>
+  {% for car in cars %}
+  <li>
+    <h4>Model: {{car.model}}</h4>
+    <h4>Label: {{car.label}}</h4>
+    <h4>Color: {{car.color}}</h4>
+    
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
