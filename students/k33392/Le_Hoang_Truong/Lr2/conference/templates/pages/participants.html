@@ -1,0 +1,35 @@
+{% extends "pages/base.html" %}
+
+{% block title %}Participants{% endblock %}
+
+{% block content %}
+<style>
+  .col {
+    margin-top: 100px;
+  }
+
+  .card {
+    border-radius: 15px;
+    transition: transform 0.3s;
+  }
+
+
+
+  
+</style>
+<div class="col">
+  
+  {% for participant in Participants %}
+    <div class="card mb-4">
+      <div class="card-body mt-4">
+          <div class="participant-card">
+            <h4>{{ participant.user.name }}</h4>
+            <p>{{ participant.user.username }}</p>
+          </div>
+      </div>
+    </div>
+
+    
+  {% endfor %}
+</div>
+{% endblock %}

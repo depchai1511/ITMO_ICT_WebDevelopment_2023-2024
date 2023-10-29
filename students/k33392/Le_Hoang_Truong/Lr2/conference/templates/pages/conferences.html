@@ -1,0 +1,51 @@
+{% extends "pages/base.html" %}
+
+{% block title %}Conference{% endblock %}
+
+{% block content %}
+<style>
+  .col {
+    margin-top: 100px;
+  }
+
+  .card {
+    border-radius: 15px;
+    transition: transform 0.3s;
+  }
+
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  
+</style>
+<div class="col">
+  
+  {% for conference in Conferences %}
+  {% if  conference.recommended %}
+  <a href="{% if user.is_authenticated and conference.id in RegisteredConferences %}/{{conference.id}}{% endif %}"> 
+    <div class="card mb-4">
+      <div class="card-body mt-4">
+          <div class="conference-card">
+            <h4>{{ conference.name }}</h4>
+            <p>{{ conference.decription }}</p>
+            {% if user.is_authenticated %}
+              {% if conference.id in RegisteredConferences  %}
+                <a href="/cancel_registration/{{ conference.id }}" class="cancel-registration-button">Cancel</a>
+              {% else %}
+                  <a href="/register/{{ conference.id }}" class="register-button">Register</a>
+              {% endif %}
+            {% else %}
+              <a href="{% url 'login' %}" class="register-button">Register</a>
+            {% endif %}
+            <a href="/participants/{{ conference.id }}" class="participant-button">Participants</a>
+          </div>
+       
+      </div>
+    </div>
+  </a>
+  {% endif %}
+  {% endfor %}
+</div>
+{% endblock %}

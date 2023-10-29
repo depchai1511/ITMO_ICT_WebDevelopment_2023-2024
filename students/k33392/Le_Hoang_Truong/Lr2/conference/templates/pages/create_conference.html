@@ -1,0 +1,30 @@
+{% extends "pages/base.html" %}
+{% load static %}
+{% block title %}Create conference{% endblock %} 
+{% block content %}
+<div class="d-flex flex-column align-items-center mb-5">
+    <h1 class="pt-3 font-title-2 font-semibold">Create conference</h1>
+</div>      
+<form method="POST" action="{% url 'create_conference' %}">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label for="name">Name: </label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Enter the name">
+    </div>
+
+    <div class="mb-3">
+        <label for="decription">Decription:</label>    
+        <input type="decription" class="form-control" id="decription" name="decription" placeholder="Enter the decription">
+    </div>
+
+    <div class="mb-3">
+        <label for="location">Location</label>    
+        <input type="location" class="form-control" id="location" name="location" placeholder="Enter the location">
+    </div>
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Create</button>
+    </div>
+
+</form>
+{% endblock %}

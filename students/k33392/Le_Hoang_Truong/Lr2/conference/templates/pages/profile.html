@@ -1,0 +1,57 @@
+{% extends "pages/base.html" %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+<style>
+    .card {
+      border-radius: 15px;
+      transition: transform 0.3s;
+    }
+  
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+  
+    
+</style>
+
+{% load static %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="border rounded p-3">
+                <div class="text-center mb-3">
+                    <img src="{% static 'images/profile.jpg' %}" alt="Avatar" class="img-fluid rounded-circle">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="border rounded p-3">
+                <h1 class="mt-3 mb-2">{{user.name}}</h1>
+                <p><strong>Username:</strong> {{user.username}}</p>
+                <p><strong>Birthday:</strong> {{user.birthday}}</p>
+                <p><strong>Email:</strong> {{user.email}}</p>
+                <div class="text-center">
+                    <a href="{% url 'update_user' user.id  %}" class="btn btn-primary">Edit Profile</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            {% for conference in conferences %}
+            <a href="{% url 'conference' conference.id %}">
+                <div class="card mb-4 mt-4">
+                    <div class="card-body mt-4">
+                        <div class="conference-card">
+                            <h4>{{ conference.name }}</h4>
+                            <p>{{ conference.decription }}</p>
+                            <a href="/participants/{{ conference.id }}" class="participant-button">Participants</a>
+                        </div>
+                    </div>
+                </div>
+            </a>
+      
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
