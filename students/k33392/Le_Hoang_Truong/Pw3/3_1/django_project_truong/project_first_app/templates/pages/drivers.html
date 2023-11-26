@@ -1,0 +1,16 @@
+{% extends 'pages/base.html' %} 
+{% block title %}Drivers{% endblock %}
+
+{% block content %}
+{% for driver in drivers %}
+  <li>
+    <h4>Name: {{driver.name}}</h4>
+    <h4>Birthday: {{driver.birthday}}</h4>
+    <h4>Passport: {{driver.passport}}</h4>
+    <h4>Address: {{driver.address}}</h4>
+    <h4>Nationality: {{driver.nationality}}</h4>
+  </li>
+{% endfor %}
+
+{% endblock %}
+
