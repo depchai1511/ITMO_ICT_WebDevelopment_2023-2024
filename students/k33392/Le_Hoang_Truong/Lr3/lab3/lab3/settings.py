@@ -26,7 +26,10 @@ SECRET_KEY = 'django-insecure-k+)fkf)hs))g!a+wnag5lli$f!=r(+j0s@*5!hm(j_y-(m_1zd
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8080",
+    "http://127.0.0.1:8000",
+]
 
 # Application definition
 
@@ -41,12 +44,14 @@ INSTALLED_APPS = [
     'rest_framework',
     'bus_station',
     'djoser',
+    'corsheaders'
     
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -105,6 +110,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+DJOSER = {
+    'SERIALIZERS': {
+        'user_create': 'bus_station.serializers.UserCreateSerializer',
+        'user': 'bus_station.serializers.UserSerializer',
+        'current_user' : 'bus_station.serializers.UserSerializer'
+    },
+}
 
 
 REST_FRAMEWORK = {

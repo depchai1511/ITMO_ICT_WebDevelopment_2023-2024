@@ -15,16 +15,11 @@ class Driver(models.Model):
 
 class Bus(models.Model):
     registration_number = models.CharField(max_length=20)
-    bus_type = models.ForeignKey('BusType', on_delete=models.CASCADE)
-
+    capacity = models.IntegerField()
     def __str__(self):
         return f"{self.registration_number}"
 
-class BusType(models.Model):
-    capacity = models.IntegerField()
 
-    def __str__(self):
-        return f"{self.capacity}"
 
 class Route(models.Model):
     start_point = models.CharField(max_length=255)
